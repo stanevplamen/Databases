@@ -1,0 +1,119 @@
+--TASK 4 Write a SQL query to find all information about all departments.
+SELECT * FROM Departments
+
+--TASK 5 Write a SQL query to find all department names.
+SELECT Name From Departments
+
+--TASK 6 Write a SQL query to find the salary of each employee.
+SELECT FirstName + ' ' + LastName AS [Full Name],
+EmployeeID as [No.], Salary FROM Employees
+
+
+--TASK 7 Write a SQL to find the full name of each employee.
+SELECT FirstName + ' ' + MiddleName + ' ' + LastName AS [Full Name],
+EmployeeID as [No.] FROM Employees
+WHERE MiddleName IS NOT NULL
+UNION
+SELECT FirstName + ' ' + LastName AS [Full Name],
+EmployeeID as [No.] FROM Employees
+WHERE MiddleName IS NULL
+ 
+--TASK 8 Write a SQL query to find the email addresses of each employee (by his first and last name). Consider that the mail domain is telerik.com. Emails should look like “John.Doe@telerik.com". The produced column should be named "Full Email Addresses".
+SELECT FirstName, LastName, 
+FirstName + '.' + LastName + '@telerik.com' 
+as [Full Email Addresses] 
+FROM Employees 
+--UPDATE Employees 
+--SET [Full Email Addresses] = REPLACE([Full Email Addresses], '''', '') 
+
+--TASK 9 Write a SQL query to find all different employee salaries.
+SELECT DISTINCT Salary FROM Employees
+
+--TASK 10 Write a SQL query to find all information about the employees whose job title is “Sales Representative“.
+SELECT * FROM Employees
+WHERE JobTitle = 'Sales Representative'
+
+--TASK 11 Write a SQL query to find the names of all employees whose first name starts with "SA".
+SELECT FirstName + ' ' + LastName AS [Full Name] FROM Employees
+Where FirstName LIKE 'sa%'
+
+--TASK 12 Write a SQL query to find the names of all employees whose last name contains "ei".
+SELECT FirstName + ' ' + LastName AS [Full Name] FROM Employees
+Where LastName LIKE '%ei%'
+
+--TASK 13 Write a SQL query to find the salary of all employees whose salary is in the range [20000…30000].
+SELECT LastName, FirstName, Salary
+FROM Employees
+WHERE Salary BETWEEN 20000 AND 30000
+
+--TASK 14 Write a SQL query to find the names of all employees whose salary is 25000, 14000, 12500 or 23600.
+SELECT FirstName, LastName, Salary
+FROM Employees
+WHERE Salary IN (25000, 14000, 12500, 23600)
+
+--TASK 15 Write a SQL query to find all employees that do not have manager.
+SELECT FirstName, LastName, ManagerID
+FROM Employees
+WHERE ManagerID is NULL
+
+--TASK 16 Write a SQL query to find all employees that have salary more than 50000. Order them in decreasing order by salary.
+SELECT LastName, Salary
+FROM Employees
+WHERE Salary > 50000
+ORDER BY Salary DESC
+
+--TASK 17 Write a SQL query to find the top 5 best paid employees.
+SELECT TOP 5 LastName, Salary
+FROM Employees
+ORDER BY Salary DESC
+
+--TASK 18 Write a SQL query to find all employees along with their address. Use inner join with ON clause.
+SELECT
+  e.LastName FirstName, e.LastName,
+  m.AddressText Adress, m.AddressID 
+FROM Employees e INNER JOIN Addresses m
+  ON e.AddressID = m.AddressID
+
+--TASK 19 Write a SQL query to find all employees and their address. Use equijoins (conditions in the WHERE clause).
+SELECT 
+FirstName + ' ' + LastName AS FullName, m.AddressText AS Address
+FROM Employees e, Addresses m
+WHERE e.AddressID = m.AddressID
+
+--TASK 20 Write a SQL query to find all employees along with their manager.
+SELECT e.FirstName + ' ' + e.LastName
+AS [Employees], m.FirstName +' '+ m.LastName
+AS [Employees Manager]
+FROM Employees e
+Join Employees m
+ON e.ManagerID = m.EmployeeID
+
+--TASK 21 Write a SQL query to find all employees, along with their manager and their address. Join the 3 tables: Employees e, Employees m and Addresses a.
+SELECT e.FirstName + ' ' + e.LastName
+AS [Employees], m.FirstName +' '+ m.LastName
+AS [Employees Manager],
+a.AddressText [Address]
+FROM Employees e
+Join Employees m
+ON e.ManagerID = m.EmployeeID
+JOIN Addresses a
+ON a.AddressID = e.AddressID
+
+--TASK 22 Write a SQL query to find all departments and all town names as a single list. Use UNION.
+SELECT Name FROM Towns 
+UNION
+SELECT Name FROM Departments
+
+--TASK 23 Write a SQL query to find all the employees and the manager for each of them along with the employees that do not have manager. Use right outer join. Rewrite the query to use left outer join.
+SELECT e.FirstName + ' ' + e.LastName
+AS [Employees], m.FirstName +' '+ m.LastName
+AS [Employees Manager]
+FROM Employees e
+LEFT OUTER Join Employees m
+ON e.ManagerID = m.EmployeeID
+
+--TASK 24 Write a SQL query to find the names of all employees from the departments "Sales" and "Finance" whose hire year is between 1995 and 2005.
+SELECT e.FirstName + ' ' + e.LastName, e.HireDate
+FROM Employees e JOIN Departments d
+ON e.DepartmentID = d.DepartmentID AND d.Name = 'Sales' OR d.Name = 'Finance'
+WHERE FORMAT(HireDate, 'yyyy') BETWEEN 1995 AND 2005
