@@ -1,0 +1,225 @@
+--TASK 1 Create a database with two tables: Persons(Id(PK), FirstName, LastName, SSN) and Accounts(Id(PK), PersonId(FK), Balance). Insert few records for testing. Write a stored procedure that selects the full names of all persons.
+CREATE DATABASE TsqlTrain
+GO
+
+USE TsqlTrain
+CREATE TABLE Persons (
+	PersonID INT IDENTITY NOT NULL, CONSTRAINT PK_PersonID PRIMARY KEY(PersonID),
+	FirstName NVARCHAR(20),
+	LastName NVARCHAR(20),
+	SSN NVARCHAR(20) NOT NULL
+	)
+
+GO
+
+CREATE TABLE Accounts (
+	AccountID INT IDENTITY NOT NULL,
+	Balance MONEY DEFAULT 0,
+	PersonID INT NULL
+	CONSTRAINT PK_AccountID PRIMARY KEY(AccountID),
+	CONSTRAINT FK_PersonID FOREIGN KEY(PersonID) 
+	REFERENCES Persons(PersonID)
+	)
+GO
+
+INSERT INTO Persons (FirstName, LastName, SSN)
+VALUES
+	('Hristo', 'Hristov', '13567'),
+	('Hristo', 'Ivanov', '13568'),
+	('Hristo', 'Kyrdov', '13569'),
+	('Hristo', 'Petrov', '13570')
+GO
+
+INSERT INTO Accounts (Balance, PersonID)
+VALUES
+	(3000, 1),
+	(30000, 2),
+	(300000, 3),
+	(3000000, 4)
+GO
+
+CREATE PROCEDURE usp_SelectPersonsNames
+AS
+	SELECT p.FirstName + ' ' + p.LastName
+	FROM Persons p
+GO
+
+EXECUTE usp_SelectPersonsNames
+
+
+--TASK 2 Create a stored procedure that accepts a number as a parameter and returns all persons who have more money in their accounts than the supplied number.
+CREATE PROCEDURE usp_MoneyTransfer @minBalance MONEY
+AS
+	SELECT p.FirstName + ' ' + p.LastName AS [Person Full Name], a.Balance AS [Current Balance]
+	FROM Persons p
+	JOIN Accounts a
+	ON p.PersonID = a.PersonID
+	WHERE a.Balance > @minBalance
+	ORDER BY a.Balance
+GO
+
+EXECUTE usp_MoneyTransfer 20000
+GO
+
+DROP PROCEDURE usp_MoneyTransfer
+
+
+--TASK 3 Create a function that accepts as parameters – sum, yearly interest rate and number of months. It should calculate and return the new sum. Write a SELECT to test whether the function works as expected.
+CREATE FUNCTION upf_CalculateRatedBalance(@sum MONEY, @interestRate MONEY, @months INT)
+RETURNS MONEY
+AS
+BEGIN
+	DECLARE @newSum MONEY
+	SET @newSum = @sum + @sum*@interestRate*@months / 12
+	RETURN @newSum
+END
+
+GO 
+
+SELECT dbo.upf_CalculateRatedBalance(1000, 0.12, 12) AS [Current Balance]
+GO
+
+DROP FUNCTION upf_CalculateRatedBalance
+
+
+--TASK 4 Create a stored procedure that uses the function from the previous example to give an interest to a person's account for one month. It should take the AccountId and the interest rate as parameters.
+CREATE PROCEDURE usp_CalculateRatedBalance(@accountID INT, @yearInterestRate NUMERIC(18,2))
+AS
+	UPDATE Accounts
+	SET Balance = CONVERT(MONEY, dbo.usf_CalculateRatedBalance(Balance, @yearInterestRate, 1))
+	WHERE AccountID = @accountID
+GO
+
+EXECUTE dbo.usp_CalculateRatedBalance 2,0.5
+GO
+
+
+--TASK 5 Add two more stored procedures WithdrawMoney( AccountId, money) and DepositMoney (AccountId, money) that operate in transactions.
+CREATE PROCEDURE usp_WithdrawMoney(@accountID INT, @value MONEY)
+AS
+IF (@value > 0)
+BEGIN
+	BEGIN TRAN
+		UPDATE Accounts
+		SET Balance = Balance - @value
+		WHERE AccountID = @accountID
+	COMMIT TRAN
+END
+GO
+
+EXECUTE usp_WithdrawMoney 1, 300
+GO
+
+DROP PROCEDURE usp_WithdrawMoney
+GO
+
+CREATE PROCEDURE usp_DepositMoney(@accountID INT, @value MONEY)
+AS
+IF (@value > 0)
+BEGIN
+	BEGIN TRAN
+		UPDATE Accounts
+		SET Balance = Balance + @value
+		WHERE AccountID = @accountID
+	COMMIT TRAN
+END
+GO
+
+EXECUTE usp_DepositMoney 1, 1300
+GO
+
+DROP PROCEDURE usp_DepositMoney
+GO
+
+--TASK 6 Create another table – Logs(LogID, AccountID, OldSum, NewSum). Add a trigger to the Accounts table that enters a new entry into the Logs table every time the sum on an account changes.
+CREATE TABLE Logs(
+	LodID INT IDENTITY,
+	OldSum MONEY NOT NULL,
+	NewSum MONEY NOT NULL,
+	AccountID INT NOT NULL,
+	CONSTRAINT PK_LodID PRIMARY KEY(LodID),
+	CONSTRAINT FK_AccountID FOREIGN KEY(AccountID) REFERENCES Accounts(AccountID)
+	)
+GO
+
+CREATE TRIGGER tr_MoneyUpdate ON Accounts FOR UPDATE
+AS
+	INSERT INTO Logs (OldSum, NewSum, AccountID)
+	SELECT d.Balance, i.BAlance, d.AccountID
+	FROM deleted as d
+	JOIN inserted as i
+	ON d.AccountID = i.AccountID
+GO
+
+--EXECUTE usp_DepositMoney 1, 1300
+--GO
+
+--DROP PROCEDURE usp_DepositMoney
+--GO
+
+DROP TRIGGER tr_MoneyUpdate 
+
+
+--TASK 7 Define a function in the database TelerikAcademy that returns all Employee's names (first or middle or last name) and all town's names that are comprised of given set of letters. Example 'oistmiahf' will return 'Sofia', 'Smith', … but not 'Rob' and 'Guy'.
+CREATE PROCEDURE dbo.usp_NamesSearchProcedure ( @lettersToSearch NVARCHAR(20))
+AS
+	DECLARE @valid BIT
+	SET @valid = 0
+		SELECT e.FirstName AS [Employee name]
+		FROM Employees e
+		WHERE 
+			1 = (SELECT(dbo.fn_SearchFunction (e.FirstName , @lettersToSearch)))
+GO
+
+CREATE FUNCTION dbo.fn_SearchFunction(@sname NVARCHAR(50), @sletters NVARCHAR(20))
+RETURNS BIT
+AS
+BEGIN
+	DECLARE @contains BIT
+	SET @contains = 1
+	DECLARE @currentLetter NVARCHAR(1)
+	DECLARE @counter INT
+	SET @counter = 1
+
+	WHILE(@counter <= LEN(@sname))
+		BEGIN
+		SET @currentLetter = SUBSTRING(@sname, @counter, 1)
+		IF(CHARINDEX(@currentLetter, @sletters) = 0)
+			SET @contains = 0;
+		SET @counter = @counter + 1;
+		END
+	RETURN @contains
+END
+GO
+
+EXECUTE dbo.usp_NamesSearchProcedure 'oistmiahf'
+GO
+
+DROP FUNCTION dbo.fn_SearchFunction
+DROP PROCEDURE dbo.usp_NamesSearchProcedure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
