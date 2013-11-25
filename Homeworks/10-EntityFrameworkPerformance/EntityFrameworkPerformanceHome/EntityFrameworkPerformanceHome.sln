@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikAcademyModel", "TelerikAcademyModel\TelerikAcademyModel.csproj", "{C7F5D2E6-B0DD-42D2-81D3-5BE7DB481E0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01TAEmployees", "01TAEmployeesOptimized\01TAEmployees.csproj", "{086025AE-0165-4789-A377-FC2AE9AABB7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02TAList", "02TAList\02TAList.csproj", "{94B53F1E-97A3-49E5-AE0E-A55F2C7CE285}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7F5D2E6-B0DD-42D2-81D3-5BE7DB481E0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F5D2E6-B0DD-42D2-81D3-5BE7DB481E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F5D2E6-B0DD-42D2-81D3-5BE7DB481E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F5D2E6-B0DD-42D2-81D3-5BE7DB481E0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{086025AE-0165-4789-A377-FC2AE9AABB7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{086025AE-0165-4789-A377-FC2AE9AABB7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{086025AE-0165-4789-A377-FC2AE9AABB7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{086025AE-0165-4789-A377-FC2AE9AABB7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B53F1E-97A3-49E5-AE0E-A55F2C7CE285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B53F1E-97A3-49E5-AE0E-A55F2C7CE285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B53F1E-97A3-49E5-AE0E-A55F2C7CE285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B53F1E-97A3-49E5-AE0E-A55F2C7CE285}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

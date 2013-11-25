@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C7F5D2E6-B0DD-42D2-81D3-5BE7DB481E0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TelerikAcademyModel</RootNamespace>
+    <AssemblyName>TelerikAcademyModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.TransferObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.TransferSqlServerObjectsTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounts.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Addresses.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Departments.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employees.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesProjects.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fn_CustomerNamesInRegion_Result.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Groups.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Projects.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelerikEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TelerikEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelerikEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelerikEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TelerikEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Towns.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users1.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_SelectEmployeesBySeniority_Result.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_SelectSeniorEmployees_Result.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_Active_Accounts.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkHours.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkHoursLogs.cs">
+      <DependentUpon>TelerikEntity.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="TelerikEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TelerikEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="TelerikEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TelerikEntity.edmx</DependentUpon>
+      <LastGenOutput>TelerikEntity.Context.cs</LastGenOutput>
+    </None>
+    <None Include="TelerikEntity.edmx.diagram">
+      <DependentUpon>TelerikEntity.edmx</DependentUpon>
+    </None>
+    <None Include="TelerikEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TelerikEntity.edmx</DependentUpon>
+      <LastGenOutput>TelerikEntity.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
