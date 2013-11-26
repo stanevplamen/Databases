@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleBlogSystem.Models", "ConsoleBlogSystem.Models\ConsoleBlogSystem.Models.csproj", "{E5E177EC-F542-4CD0-AA6B-6DA0394BA717}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleBlogSystem.Data", "ConsoleBlogSystem.Data\ConsoleBlogSystem.Data.csproj", "{F1CFE933-997D-4DE3-857D-008689562BB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleBlogSystem.Client", "ConsoleBlogSystem.Client\ConsoleBlogSystem.Client.csproj", "{C90F1601-CC76-4A35-AAD4-BE9015C2ED24}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5E177EC-F542-4CD0-AA6B-6DA0394BA717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5E177EC-F542-4CD0-AA6B-6DA0394BA717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5E177EC-F542-4CD0-AA6B-6DA0394BA717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5E177EC-F542-4CD0-AA6B-6DA0394BA717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1CFE933-997D-4DE3-857D-008689562BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1CFE933-997D-4DE3-857D-008689562BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1CFE933-997D-4DE3-857D-008689562BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1CFE933-997D-4DE3-857D-008689562BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C90F1601-CC76-4A35-AAD4-BE9015C2ED24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C90F1601-CC76-4A35-AAD4-BE9015C2ED24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C90F1601-CC76-4A35-AAD4-BE9015C2ED24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C90F1601-CC76-4A35-AAD4-BE9015C2ED24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
