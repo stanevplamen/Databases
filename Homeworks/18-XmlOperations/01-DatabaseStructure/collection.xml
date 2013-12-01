@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<albums>
+  <album>
+    <aname>Gosho Tapoto Crazy</aname>
+    <artist>
+      <rname>Georgi Ivanov</rname>
+      <nname>Gosho Kitarata</nname>
+    </artist>
+    <year>2013</year>
+    <produser>
+      <rname>Ivan Ivanov</rname>
+      <nname>Ivans House</nname>
+    </produser>
+    <price>33.90</price>
+    <songs>
+      <song>
+        <sname>FirstSong</sname>
+        <seconds>300</seconds>
+      </song>
+      <song>
+        <sname>SecondsSong</sname>
+        <seconds>270</seconds>
+      </song>
+    </songs>
+  </album>
+  <album>
+    <aname>Gosho Tapoto Crazy</aname>
+    <artist>
+      <rname>Georgi Ivanov</rname>
+      <nname>Gosho Kitarata</nname>
+    </artist>
+    <year>2013</year>
+    <produser>
+      <rname>Ivan Ivanov</rname>
+      <nname>Ivans House</nname>
+    </produser>
+    <price>33.90</price>
+    <songs />
+  </album>
+</albums>
